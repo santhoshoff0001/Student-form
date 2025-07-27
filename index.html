@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Student Form</title>
+</head>
+<body>
+     <style>
+    body {
+      text-align: center;
+      background-color: #f9f7f7;
+      
+    }
+form {
+      text-align: justify;
+      color: white;
+      background-color: rgb(9, 8, 7);
+      padding: 25px;
+      display: inline-block;
+      margin-top: 20px;
+      border-radius: 30px;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    input, select {
+      margin: 5px;
+      padding: 5px;
+
+    }
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      width: 80%;
+    }
+    th, td {
+      border: 1px solid #999;
+      padding: 10px;
+    }
+    .del {
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .btn {
+      
+      background-color: orangered;
+      border: none;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+    </style>
+    <h1 style="color: rgb(91, 53, 127);">Student Form</h1>
+    
+    <form id="form">
+        <label for="">Name:</label>
+        <input type="text" id="name"><br>
+
+        <label>Age:</label>
+        <input type="number" id="age"><br>
+
+        <label>Gender:</label>
+        <input type="radio" value="male" name="gender" id="male">Male
+        <input type="radio" value="female" name="gender" id="female">Female<br>
+
+        <label>Department:</label>
+        <select id="course">
+            <option value="" disabled selected></option>
+            <option value="CS">CS</option>
+            <option value="IT">IT</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+            <option value="CIVIL">CIVIL</option>
+            <option value="MECH">MECH</option>
+            <option value="AUTO">AUTO</option>
+        </select><br>
+
+        <label>E-mail:</label>
+        <input type="email" id="email"><br>
+        <div style="text-align: center;">
+        <button type="submit" class="btn">Save</button>
+        </div>
+    </form>
+
+    <table id="table"> 
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Course</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        const form = document.getElementById("form")
+        const tbody = document.querySelector("#table tbody")
+
+        form.addEventListener("submit",function(e){e.preventDefault()
+        
+        const Name = document.getElementById("name").value
+        const Age = document.getElementById("age").value
+        const Gender = document.querySelector("input[name='gender']:checked").value
+        const Course = document.getElementById("course").value
+        const Email = document.getElementById("email").value
+
+        const row = document.createElement("tr")
+        row.innerHTML=`
+            <td>${Name}</td>
+            <td>${Age}</td>
+            <td>${Gender}</td>
+            <td>${Course}</td>
+            <td>${Email}</td>
+            <td><button class="del">delete</button></td>`;
+        
+        row.querySelector(".del").addEventListener("click",function(){
+            row.remove()
+        })
+        tbody.append(row)
+        form.reset()
+        
+        })
+    </script>
+
+</body>
+</html>
